@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text.Json;
 using Amazon.Lambda.Core;
@@ -28,7 +29,7 @@ namespace hello_template
         {
             context.Logger.LogLine("Get Request\n");
             context.Logger.LogLine($"Get Request: {JsonSerializer.Serialize(request)}");
-            var outputName = request.PathParameters["name"];
+            var outputName = request.PathParameters.FirstOrDefault(pathParam => pathParam.Key == "name").Value;
 
             if (string.IsNullOrWhiteSpace(outputName))
             {
