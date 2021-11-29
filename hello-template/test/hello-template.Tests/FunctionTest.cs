@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Xunit;
 using Amazon.Lambda.TestUtilities;
 using Amazon.Lambda.APIGatewayEvents;
@@ -21,14 +22,17 @@ namespace hello_template.Tests
 
             var request = new APIGatewayProxyRequest()
             {
-                Path = input
+                PathParameters = new Dictionary<string, string>()
+                {
+                    { "name", input }
+                }
             };
             var context = new TestLambdaContext();
             var response = functions.Get(request, context);
             Assert.Equal(200, response.StatusCode);
             Assert.Equal($"Hello {input}", response.Body);
         }
-        
+
         [Theory]
         [InlineData("            ")]
         [InlineData("   ")]
@@ -40,7 +44,10 @@ namespace hello_template.Tests
 
             var request = new APIGatewayProxyRequest()
             {
-                Path = input
+                PathParameters = new Dictionary<string, string>()
+                {
+                    { "name", input }
+                }
             };
             var context = new TestLambdaContext();
             var response = functions.Get(request, context);

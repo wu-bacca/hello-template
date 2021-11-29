@@ -28,11 +28,11 @@ namespace hello_template
         {
             context.Logger.LogLine("Get Request\n");
             context.Logger.LogLine($"Get Request: {JsonSerializer.Serialize(request)}");
-            var outputName = request.Path?.Trim();
-            
+            var outputName = request.PathParameters["name"];
+
             if (string.IsNullOrWhiteSpace(outputName))
             {
-                outputName = "anonymous!"; 
+                outputName = "anonymous!";
             }
 
             var response = new APIGatewayProxyResponse
