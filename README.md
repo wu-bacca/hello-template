@@ -40,3 +40,10 @@ Deploy application
     cd "hello-template/src/hello-template"
     dotnet lambda deploy-serverless
 ```
+
+Zip application
+```
+    dotnet publish ./hello-template/src/hello-template/hello-template.csproj -o ./release --runtime linux-musl-x64 -p:PublishReadyToRun=false --no-self-contained
+    cd release
+    zip -r ../hello-template.zip .
+```
