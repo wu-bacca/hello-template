@@ -21,7 +21,7 @@ namespace hello_template.Tests
 
             var request = new APIGatewayProxyRequest()
             {
-                Body = input
+                Path = input
             };
             var context = new TestLambdaContext();
             var response = functions.Get(request, context);
@@ -40,7 +40,7 @@ namespace hello_template.Tests
 
             var request = new APIGatewayProxyRequest()
             {
-                Body = input
+                Path = input
             };
             var context = new TestLambdaContext();
             var response = functions.Get(request, context);

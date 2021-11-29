@@ -28,7 +28,7 @@ namespace hello_template
         {
             context.Logger.LogLine("Get Request\n");
             context.Logger.LogLine($"Get Request: {JsonSerializer.Serialize(request)}");
-            var outputName = request.Body?.Trim();
+            var outputName = request.Path?.Trim();
             
             if (string.IsNullOrWhiteSpace(outputName))
             {
