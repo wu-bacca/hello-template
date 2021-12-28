@@ -27,7 +27,6 @@ namespace hello_template
         /// <returns>The API Gateway response.</returns>
         public APIGatewayProxyResponse Get(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            context.Logger.LogLine("Get Request\n");
             context.Logger.LogLine($"Get Request: {JsonSerializer.Serialize(request)}");
             var outputName = request.PathParameters.FirstOrDefault(pathParam => pathParam.Key == "name").Value;
 
